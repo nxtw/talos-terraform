@@ -34,4 +34,5 @@ Wait for the script to finish
 ### Run Terraform
 
 `terraform init`
+
 `terraform apply`
