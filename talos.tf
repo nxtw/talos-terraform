@@ -136,6 +136,10 @@ data "talos_machine_configuration" "controller" {
             contents = data.helm_template.reloader.manifest
           },
           {
+            name     = "external-dns"
+            contents = data.helm_template.external-dns.manifest
+          },
+          {
             name = "gitea"
             contents = join("---\n", [
               yamlencode({
