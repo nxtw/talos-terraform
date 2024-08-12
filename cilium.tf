@@ -1,8 +1,8 @@
 locals {
   # https://docs.cilium.io/en/stable/network/lb-ipam/
   # https://docs.cilium.io/en/stable/network/l2-announcements/
-  # CiliumL2AnnouncementPolicy https://github.com/cilium/cilium/blob/v1.16.0/pkg/k8s/apis/cilium.io/v2alpha1/l2announcement_types.go#L23-L42
-  # CiliumLoadBalancerIPPool https://github.com/cilium/cilium/blob/v1.16.0/pkg/k8s/apis/cilium.io/v2alpha1/lbipam_types.go#L23-L47
+  # https://github.com/cilium/cilium/blob/v1.16.0/pkg/k8s/apis/cilium.io/v2alpha1/l2announcement_types.go#L23-L42
+  # https://github.com/cilium/cilium/blob/v1.16.0/pkg/k8s/apis/cilium.io/v2alpha1/lbipam_types.go#L23-L47
   cilium_external_lb_manifests = [
     {
       apiVersion = "cilium.io/v2alpha1"
@@ -44,14 +44,14 @@ locals {
   cilium_external_lb_manifest = join("---\n", [for d in local.cilium_external_lb_manifests : yamlencode(d)])
 }
 
-// https://www.talos.dev/v1.7/kubernetes-guides/network/deploying-cilium/#method-4-helm-manifests-inline-install
-// https://docs.cilium.io/en/stable/network/servicemesh/ingress/
-// https://docs.cilium.io/en/stable/gettingstarted/hubble_setup/
-// https://docs.cilium.io/en/stable/gettingstarted/hubble/
-// https://docs.cilium.io/en/stable/helm-reference/#helm-reference
-// https://github.com/cilium/cilium/releases
-// https://github.com/cilium/cilium/tree/v1.16.0/install/kubernetes/cilium
-// https://registry.terraform.io/providers/hashicorp/helm/latest/docs/data-sources/template
+# https://www.talos.dev/v1.7/kubernetes-guides/network/deploying-cilium/#method-4-helm-manifests-inline-install
+# https://docs.cilium.io/en/stable/network/servicemesh/ingress/
+# https://docs.cilium.io/en/stable/gettingstarted/hubble_setup/
+# https://docs.cilium.io/en/stable/gettingstarted/hubble/
+# https://docs.cilium.io/en/stable/helm-reference/#helm-reference
+# https://github.com/cilium/cilium/releases
+# https://github.com/cilium/cilium/tree/v1.16.0/install/kubernetes/cilium
+# https://registry.terraform.io/providers/hashicorp/helm/latest/docs/data-sources/template
 data "helm_template" "cilium" {
   namespace  = "kube-system"
   name       = "cilium"

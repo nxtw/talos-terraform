@@ -43,8 +43,6 @@ data "helm_template" "argocd" {
   name       = "argocd"
   repository = "https://argoproj.github.io/argo-helm"
   chart      = "argo-cd"
-  # see https://artifacthub.io/packages/helm/argo/argo-cd
-  # renovate: datasource=helm depName=argo-cd registryUrl=https://argoproj.github.io/argo-helm
   version      = "7.3.11" # app version 2.11.7.
   kube_version = var.kubernetes_version
   api_versions = []
@@ -67,7 +65,7 @@ data "helm_template" "argocd" {
     server = {
       ingress = {
         enabled = true
-        tls     = false
+        tls     = true
       }
     }
   })]

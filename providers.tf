@@ -1,13 +1,17 @@
 terraform {
-  #required_version = "1.9.3"
+  required_version = "1.9.4"
   required_providers {
     random = {
       source  = "hashicorp/random"
       version = "3.6.2"
     }
-    vsphere = {
-      source  = "hashicorp/vsphere"
-      version = "2.8.2"
+    cloudinit = {
+      source  = "hashicorp/cloudinit"
+      version = "2.3.4"
+    }
+    proxmox = {
+      source  = "bpg/proxmox"
+      version = "0.62.0"
     }
     talos = {
       source  = "siderolabs/talos"
@@ -20,11 +24,15 @@ terraform {
   }
 }
 
-provider "vsphere" {
-  user                 = var.vsphere_user
-  password             = var.vsphere_password
-  vsphere_server       = var.vsphere_server
-  allow_unverified_ssl = true
+provider "proxmox" {
+  tmp_dir = "tmp"
+  insecure = true
+  ssh {
+    node {
+      name    = var.proxmox_pve_node_name
+      address = var.proxmox_pve_node_address
+    }
+  }
 }
 
 provider "talos" {
