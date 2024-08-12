@@ -118,7 +118,6 @@ variable "vsphere_user" {
 
 variable "vsphere_password" {
   type      = string
-  default   = "password"
   sensitive = true
 }
 
