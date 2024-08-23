@@ -7,6 +7,9 @@ data "helm_template" "external-dns" {
   kube_version = var.kubernetes_version
   api_versions = []
   values = [yamlencode({
+    "provider" = {
+        "name" = "cloudflare"
+    }
     "env" = [
     {
       "name" = "CF_API_KEY"
@@ -27,10 +30,4 @@ data "helm_template" "external-dns" {
       }
     },
   ]
-  "provider" = {
-    "name" = "cloudflare"
-  } 
-
-    })]
-  }
-
+}
