@@ -21,7 +21,14 @@ terraform {
       source  = "hashicorp/helm"
       version = "2.14.0"
     }
+    
   }
+}
+
+
+provider "kubernetes" {
+  config_path    = "~/.kube/config"
+  #config_context = "my-context"
 }
 
 provider "proxmox" {
