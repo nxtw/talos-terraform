@@ -30,4 +30,6 @@ data "helm_template" "external-dns" {
       }
     },
   ]
+})]
 }
+ 
